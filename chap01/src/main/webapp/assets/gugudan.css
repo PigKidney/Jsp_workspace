@@ -1,0 +1,9 @@
+#gugudan {
+	display : grid;
+	grid-template-columns : repeat(8, 1fr);
+}
+
+.dan {
+	background-color: rgb(70, 70, 70);
+    text-align: white;
+}

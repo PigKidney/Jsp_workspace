@@ -1,0 +1,16 @@
+#gugudan {
+	display : grid;
+	grid-template-columns : repeat(8, 1fr);
+}
+
+#gugudan > div {
+	padding: 10px;
+	margin: 10px;
+	background-color: rgb(70, 70, 70);
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    font-weight: 1000;
+    font-size: 20px;
+    text-align: justify;
+    border: solid rgb(45, 45, 45) 3px;
+}
