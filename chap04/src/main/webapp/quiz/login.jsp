@@ -9,9 +9,9 @@
 <body>
 	<h1>로그인</h1>
 
-	<form action="/chap04/quiz/join.jsp" method="post">
-		아 이 디 	: <input id="IDInput" type="text" name="ID"><br>
-		비밀번호	: <input id="passWordInput" type="password" name="password"><br>
+	<form action="/chap04/quiz/join.jsp" method="get">
+		아 이 디 	: <input id="IDInput" type="text" name="loginId"><br>
+		비밀번호	: <input id="passWordInput" type="password" name="loginPassword"><br>
 		<input type="submit" value="로그인">
 	</form>
 		<button onclick="location.href='/chap04/quiz/createId.jsp'">회원가입</button>

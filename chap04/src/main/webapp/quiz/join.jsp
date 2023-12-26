@@ -5,33 +5,90 @@
 	pageEncoding="EUC-KR"%>
 
 <%!
-	private boolean isEmpty(String str) {
-		if (str == null || str.trim().equals("")) {
-			return true;
-		}
-		return false;
+public class User{
+	String id="";
+	String password="";
+	String memo="";
+	
+	User(){
 	}
+	
+	User(String id, String password){
+		this.id = id;
+		this.password = password;
+	}
+	private String getId(){
+		return this.id;
+	}
+	private String getPassword(){
+		return this.password;
+	}
+	private String getMemo(){
+		return this.memo;
+	}
+	private void setId(String id){
+		this.id = id;
+	}
+	private void setPassword(String password){
+		this.password = password;
+	}
+	private void setMemo(String memo){
+		this.memo = memo;
+	}
+	
+}
+	HashMap<String, User> users = new HashMap<>();
 
-//	private final String successHtml = "<h1>로그인 완료</h1>\n";%>
+%>
+
 <%
+	
 	String ID = request.getParameter("ID");
 	String password = request.getParameter("password");
-	Boolean isLogigned = (Boolean) session.getAttribute("isLogined");
+	if(ID!=null){
+		if(application.getAttribute(ID)==null){
+			users.put(ID, new User(ID,password));
+			application.setAttribute(ID, users);
 	
-	if (isLogigned != null && isLogigned) {
-		//out.print(successHtml);
-		response.sendRedirect("chap04/quiz/main.jsp");
-	} else {
-		if (isEmpty(ID) || isEmpty(password)) {
+			response.sendRedirect("/chap04/quiz/login.jsp");
+		
+		} else if(application.getAttribute(ID)!=null){
+			response.sendRedirect("/chap04/quiz/createId.jsp");
+		}
+		
+	}
+	
+		
+	String loginId = request.getParameter("loginId");
+	String loginPassword = request.getParameter("loginPassword");
+	if(loginId!=null){
+		if(application.getAttribute(loginId)==null){
 			response.sendRedirect("/chap04/quiz/login.jsp");
 		} else {
-			if (ID.equals(password)) {
-		session.setAttribute("isLogigned", true);
-		//out.print(successHtml);
-		response.sendRedirect("/chap04/quiz/main.jsp");
-			} else {
-		response.sendRedirect("/chap04/quiz/login.jsp");
+			application.setAttribute(ID, users);
+
+			User u1 = (User)application.getAttribute(loginId);
+			if(u1.getPassword().equals(loginPassword)){
+				
+				response.sendRedirect("/chap04/quiz/main.jsp");
+			} else{
+				response.sendRedirect("/chap04/quiz/login.jsp");
 			}
-		}
+		} 		
 	}
+
+	String memo = request.getParameter("memo");
+	if(memo!=null){
+		if(application.getAttribute(loginId)==null){
+			response.sendRedirect("/chap04/quiz/login.jsp");
+		} else {
+			User u1 = (User)application.getAttribute(loginId);
+			if(u1.getPassword().equals(loginPassword)){
+				response.sendRedirect("/chap04/quiz/main.jsp");
+			} else{
+				response.sendRedirect("/chap04/quiz/login.jsp");
+			}
+		} 		
+	}
+	
 %>

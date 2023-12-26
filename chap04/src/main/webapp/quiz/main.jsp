@@ -1,3 +1,4 @@
+<%@page import="org.apache.tomcat.util.digester.EnvironmentPropertySource"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -8,29 +9,21 @@
 </head>
 <body>
 	<h1>메모장</h1>
-	
-	<textarea id="memo" rows="50" cols="150"></textarea><br>
-	<button id="saveData">메모저장</button>
-	<button id="loadData">불러오기</button>
-	<button id="logoutBtn" onclick="location.href='/chap04/quiz/login.jsp'">로그아웃</button>
+	<form action="/chap04/quiz/join.jsp" method="post">
+		<textarea id="memo" rows="50" cols="150" name="memo"><% out.print(session.getMaxInactiveInterval()); %>></textarea><br>
+		<input type="submit" value="저장">
+	</form>
+		<button id="loadData">불러오기</button>
+		<button id="logoutBtn" onclick="location.href='/chap04/quiz/login.jsp'">로그아웃</button>
 	
 	<script type="text/javascript">
 		const logoutBtn = document.getElementById("logoutBtn");
 		logoutBtn.addEventListener('click', (e) => {
 			HttpSession userSession = request.getSession();
 			userSession.invalidate();
+			response.sendRedirect("/chap04/quiz/login.jsp");
 		});
-		
-		
-		const saveData = document.getElementById("saveData");
-		saveData.addEventListener('click', (e) => {
-			session.setAttribute("memo", memo.value);
-		})
-		
-		const loadData = document.getElementById("loadData");
-		loadData.addEventListener('click', (e) => {
-			session.getAttribute("memo");
-		})
+	
 	</script>
 </body>
 </html>
