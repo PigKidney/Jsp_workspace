@@ -10,10 +10,10 @@
 <body>
 	<h1>메모장</h1>
 	<form action="/chap04/quiz/join.jsp" method="post">
-		<textarea id="memo" rows="50" cols="150" name="memo"><% out.print(session.getMaxInactiveInterval()); %>></textarea><br>
+		<textarea id="memo" rows="50" cols="150" name="memo"><% out.append(session.getAttribute("memo").toString()); %></textarea><br>
 		<input type="submit" value="저장">
 	</form>
-		<button id="loadData">불러오기</button>
+		<!-- <button id="loadData">불러오기</button> -->
 		<button id="logoutBtn" onclick="location.href='/chap04/quiz/login.jsp'">로그아웃</button>
 	
 	<script type="text/javascript">

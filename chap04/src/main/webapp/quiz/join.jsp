@@ -8,31 +8,31 @@
 public class User{
 	String id="";
 	String password="";
-	String memo="";
+	String memo="start";
 	
-	User(){
+	public User(){
 	}
 	
-	User(String id, String password){
+	public User(String id, String password){
 		this.id = id;
 		this.password = password;
 	}
-	private String getId(){
+	public String getId(){
 		return this.id;
 	}
-	private String getPassword(){
+	public String getPassword(){
 		return this.password;
 	}
-	private String getMemo(){
+	public String getMemo(){
 		return this.memo;
 	}
-	private void setId(String id){
+	public void setId(String id){
 		this.id = id;
 	}
-	private void setPassword(String password){
+	public void setPassword(String password){
 		this.password = password;
 	}
-	private void setMemo(String memo){
+	public void setMemo(String memo){
 		this.memo = memo;
 	}
 	
@@ -46,49 +46,40 @@ public class User{
 	String ID = request.getParameter("ID");
 	String password = request.getParameter("password");
 	if(ID!=null){
-		if(application.getAttribute(ID)==null){
+		if(users.containsKey(ID)==false){
 			users.put(ID, new User(ID,password));
 			application.setAttribute(ID, users);
-	
 			response.sendRedirect("/chap04/quiz/login.jsp");
-		
-		} else if(application.getAttribute(ID)!=null){
+		} else if(users.containsKey(ID)==true){
 			response.sendRedirect("/chap04/quiz/createId.jsp");
 		}
-		
 	}
 	
 		
 	String loginId = request.getParameter("loginId");
 	String loginPassword = request.getParameter("loginPassword");
+	users.containsKey(loginId);
 	if(loginId!=null){
-		if(application.getAttribute(loginId)==null){
+		if(users.containsKey(loginId)==false){
 			response.sendRedirect("/chap04/quiz/login.jsp");
-		} else {
-			application.setAttribute(ID, users);
-
-			User u1 = (User)application.getAttribute(loginId);
-			if(u1.getPassword().equals(loginPassword)){
-				
-				response.sendRedirect("/chap04/quiz/main.jsp");
+		} else if(users.containsKey(loginId)==true){
+			if(users.get(loginId).getPassword().equals(loginPassword)){
+				/* session.setAttribute(session.getId(), users.get(loginId).getMemo()); */
+				session.setAttribute("id", loginId);
+				session.setAttribute("memo", users.get(loginId).getMemo().toString());
+				/* response.getWriter().write(users.get(loginId).getMemo()); */
+ 				response.sendRedirect("/chap04/quiz/main.jsp");
 			} else{
 				response.sendRedirect("/chap04/quiz/login.jsp");
 			}
 		} 		
 	}
 
-	String memo = request.getParameter("memo");
+ 	String memo = request.getParameter("memo");
 	if(memo!=null){
-		if(application.getAttribute(loginId)==null){
-			response.sendRedirect("/chap04/quiz/login.jsp");
-		} else {
-			User u1 = (User)application.getAttribute(loginId);
-			if(u1.getPassword().equals(loginPassword)){
-				response.sendRedirect("/chap04/quiz/main.jsp");
-			} else{
-				response.sendRedirect("/chap04/quiz/login.jsp");
-			}
-		} 		
+		users.get(session.getAttribute("id")).setMemo(memo);
+		/* session.setAttribute("memo", users.get(session.getAttribute("id")).getMemo().toString()); */
+		response.sendRedirect("/chap04/quiz/main.jsp");
 	}
 	
 %>
