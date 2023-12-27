@@ -67,6 +67,7 @@ public class User{
 				/* session.setAttribute(session.getId(), users.get(loginId).getMemo()); */
 				session.setAttribute("id", loginId);
 				session.setAttribute("memo", users.get(loginId).getMemo().toString());
+				session.setAttribute("user", users.get(loginId));
 				/* response.getWriter().write(users.get(loginId).getMemo()); */
  				response.sendRedirect("/chap04/quiz/main.jsp");
 			} else{
