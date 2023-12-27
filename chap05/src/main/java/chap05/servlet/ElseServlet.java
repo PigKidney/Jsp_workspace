@@ -1,0 +1,18 @@
+package chap05.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class ElseServlet extends HttpServlet{
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("EUC-KR");
+		resp.setContentType("text/html; charset=EUC-KR");
+		resp.setCharacterEncoding("EUC-KR");
+		resp.getWriter().append("<html><h1>아무 매핑에도 걸리지 않았습니다.</h1></html>");
+	}
+}

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class LoginServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// JSP에서는 자동으로 만들어져 이ㅏㅆ는 객체들 (JSP 내장객체)
+		// JSP에서는 자동으로 만들어져 이져 있는 객체들 (JSP 내장객체)
 		ServletContext application = req.getServletContext();
 		HttpSession session = req.getSession();
 		
@@ -24,6 +24,10 @@ public class LoginServlet extends HttpServlet{
 		String pwd = req.getParameter("pwd");
 		
 		Map<String, Object> infoMap = (Map)application.getAttribute(id);
+		if(infoMap == null) {
+			resp.sendRedirect("/chap04/quiz3/index.jsp?error=1&disc=1");
+			return;
+		}
 		String pwd2 = (String)((Map)application.getAttribute(id)).get("pwd");
 		
 		// ID가 존재하고 해당 ID의 비밀번호를 맞추면 로그인 성공
@@ -32,8 +36,6 @@ public class LoginServlet extends HttpServlet{
 			infoMap.put("info", "ok");
 			session.setAttribute("info", infoMap);
 			resp.sendRedirect("/chap04/quiz/memo/main");
-		} else {
-			resp.sendRedirect("/chap04/quiz3/index.jsp?error=1&disc=1");
-		}
+		} 
 	}
 }

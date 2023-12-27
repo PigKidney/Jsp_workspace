@@ -15,18 +15,21 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/quiz/memo/*")
 public class MemoServlet extends HttpServlet{
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("EUC-KR");
+
 		String uri = req.getRequestURI();
 		String root = "/chap04/quiz/memo/";
 		String cmd = uri.substring(root.length());
-
+		
+		System.out.println(cmd);
 		// cmd에 맞춰서 포워딩할 페이지를 변경
 		if(cmd.equals("main")) {
 			// forward시에는 webapp 밑의 경로를 사용해야 한다
 			req.getRequestDispatcher("/quiz3/memoView/index.jsp").forward(req, resp);
 		} else if(cmd.equals("add")) {
 			String memo = req.getParameter("memo");
+			System.out.println(memo);
 			HttpSession session = req.getSession();
 			
 			// 로그인 중인 사용자의 정보를 꺼낸다
@@ -43,7 +46,8 @@ public class MemoServlet extends HttpServlet{
 				List<String> memos = (List<String>)infoMap.get("memoList");
 				memos.add(memo);
 			}
-			
+			resp.setContentType("text/html; charset=EUC-KR");
+			resp.setCharacterEncoding("EUC-KR");
 			req.getRequestDispatcher("/quiz3/memoView/index.jsp").forward(req, resp);
 		} else {
 			resp.sendRedirect("/chap04/quiz3/index.jsp");
