@@ -80,11 +80,11 @@
 			</select>
 			</td>
 			<td>선택란</td>
+		</tr>
 		<tr>
 			<td>color</td>
 			<td><input type="color" /></td>
 			<td>색상을 고를 수 있음</td>
-		</tr>
 		</tr>
 	</table>
 
