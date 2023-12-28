@@ -36,18 +36,16 @@
 		padding-top: 50px;
 		
 	}
+	
+	#bag {
+		display: grid;
+		grid-template-rows: repeat(4, 1fr);
+	}
 </style>
 </head>
 <body>
 
-<%-- 	<% 
-		for(Pizza pizza : (List<Pizza>)request.getAttribute("pizzas")){
-			out.print(String.format("<img src=%s alt=%s width=\"300\", height=\"auto\"><br>", pizza.getImgURL(),pizza.getName()));
-			out.print(String.format("<div>%s</div> <br>", pizza.getName()));
-			out.print(String.format("<span>L %s M %s</span><br>", pizza.getPrice().get("L"),pizza.getPrice().get("M")));
 
-		}
-	%>  --%>
 	<div id="head">Pizza Menu</div>
 	<br>
 	<div id="pizzalist">
@@ -64,15 +62,16 @@
 	</div>
 	
 	
-	<form action="/chap06/views/add">
 	<table border="0" id="table">
 		<tr>
 			<td>종류: 
-				<span name="name" id="name">
+				<select name="name" id="name">
 					<% 
-						out.print((List<Pizza>)request.getAttribute("pizzas") );
+					for(Pizza pizza : (List<Pizza>)request.getAttribute("pizzas")){
+						out.print(String.format("<option value=%s>%s</option>", pizza.getName(), pizza.getName()));
+					}
 					%> 
-				</span>
+				</select>
 			</td>
 			<td>크기 : 
 				<select name="size" id="size">
@@ -87,28 +86,55 @@
 		</tr>
 	</table>
 	
-	</form>
-	<script type="text/javascript">
-		const pizzalist = document.getElementById('pizzalist');
-		
-		/* const createPizzaDiv = () => {
-			const pizza = document.createElement('div');
-		    /* boxs.classList.add('zone'); */
-		    pizzalist.appendChild(pizza);
-		}
-		 
+	
+	<h3>장바구니</h3>
+	<div>
+		<form action="/chap06/views/add" id="bag">
+			
+		<button type="submit" id="pay">결제하기</button>
+		</form>
+	</div>
+	
+	
+	
+	<script type="text/javascript">		
+		const name = document.getElementById('name');
 		const size = document.getElementById('size');
 		const count = document.getElementById('count');
-		const sizeValue = size.innerText;
-		const countValue = count.value;
-		const addBtn = document.getElementById('add');
-		<% 
-			HashMap<String, Integer> pick = new HashMap<>();
-			HashMap<String,HashMap<String, Integer>> select = new HashMap<>();
+		const bag = document.getElementById('bag');
 		
-		%> 
+		const addBtn = document.getElementById('add');
+		
+		/* function createFristSpan(result) {
+		    const span = document.createElement('span');
+		    span.innerText = result.name +" "+result.size +" "+result.count ;
+		    span.classList.add('box');
+		    return span;
+		} */
+		
+		function createFristSpan(result) {
+		    const span = document.createElement('span');
+		    span.innerText = result.name +" "+result.size +" "+result.count ;
+		    span.classList.add('box');
+		    return span;
+		}
+		
+		const basket = [];
 		addBtn.addEventListener('click', (e) => {
+			let result = {};
+			result.name = name.options[name.selectedIndex].text;
+			result.size = size.options[size.selectedIndex].value;
+			result.count = count.value;
 			
+			bag.appendChild(createFristSpan(result));
+			basket.push(result);
+			console.log(basket);
+		});
+		
+		
+		const payBtn = document.getElementById('pay');
+		payBtn.addEventListener('click', (e) => {
+			basket
 		});
 	</script>
 	
