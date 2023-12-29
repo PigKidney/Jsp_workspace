@@ -7,6 +7,8 @@ public class EmployeeDTO {
 	private Integer employee_id;
 	private String first_name;
 	private String last_name;
+	private String email;
+	private String phone_number;
 	private Double salary;
 	private Double commission_pct;
 	private Date hire_date;
@@ -15,21 +17,78 @@ public class EmployeeDTO {
 	private Integer department_id;
 	
 	
-	
-	
-	
-	public EmployeeDTO(Integer employee_id, String first_name, String last_name, Double salary, Double commission_pct,
-			Date hire_date, String job_id, Integer manager_id, Integer department_id) {
+	public EmployeeDTO(Integer employee_id, String first_name, String last_name, String email, String phone_number,
+			Double salary, Double commission_pct, Date hire_date, String job_id, Integer manager_id,
+			Integer department_id) {
 		super();
 		this.employee_id = employee_id;
 		this.first_name = first_name;
 		this.last_name = last_name;
+		this.email = email;
+		this.phone_number = phone_number;
 		this.salary = salary;
 		this.commission_pct = commission_pct;
 		this.hire_date = hire_date;
 		this.job_id = job_id;
 		this.manager_id = manager_id;
 		this.department_id = department_id;
+	}
+
+	public String getDivRow() {
+		return String.format(
+				"<div>%d</div>"
+				+ "<div>%s</div>"
+				+ "<div>%s</div>"
+				+ "<div>%s</div>"
+				+ "<div>%s</div>"
+				+ "<div>%.2f</div>"
+				+ "<div>%.2f</div>"
+				+ "<div>%s</div>"
+				+ "<div>%s</div>"
+				+ "<div>%d</div>"
+				+ "<div>%d</div>", 
+				employee_id,
+				first_name,
+				last_name,
+				email,
+				phone_number,
+				salary,
+				commission_pct,
+				hire_date,
+				job_id,
+				manager_id,
+				department_id);
+	}
+	
+	public String getName() {
+		return 
+				"<div class=\"name\">employee_id</div>"
+				+ "<div class=\"name\">first_name</div>"
+				+ "<div class=\"name\">last_name</div>"
+				+ "<div class=\"name\">email</div>"
+				+ "<div class=\"name\">phone_number</div>"
+				+ "<div class=\"name\">salary</div>"
+				+ "<div class=\"name\">commission_pct</div>"
+				+ "<div class=\"name\">hire_date</div>"
+				+ "<div class=\"name\">job_id</div>"
+				+ "<div class=\"name\">manager_id/div>"
+				+ "<div class=\"name\">department_id</div>";
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone_number() {
+		return phone_number;
+	}
+
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
 	}
 	
 	public Integer getEmployee_id() {
@@ -87,6 +146,19 @@ public class EmployeeDTO {
 		this.department_id = department_id;
 	}
 
-	
-
+	@Override
+	public String toString() {
+		return String.format("<pre>[%d]\t[%s]  [%s]  [%s]  [%s]  [%s]  [%s]  [%.2f]  [%.2f]  [%d]  [%d]</pre>",
+		employee_id,
+		first_name,
+		last_name,
+		email, 
+		phone_number,
+		hire_date,
+		job_id,
+		salary,
+		commission_pct,
+		manager_id,
+		department_id);
+	}
 }
