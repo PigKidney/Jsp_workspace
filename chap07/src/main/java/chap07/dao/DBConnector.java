@@ -1,10 +1,10 @@
-package chap07.util;
+package chap07.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class JdbcConnection {
+public class DBConnector {
 	private static String driverPath = "oracle.jdbc.driver.OracleDriver";
 	private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	private static String id = "hr";

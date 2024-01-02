@@ -36,7 +36,7 @@
 		등번호 : <input type="number" name="PLAYER_BACK_NUMBER" form="player"> 
 		국가코드 : <input type="text" name="COUNTRY_ID" form="player"> 
 		팀번호 : <input type="number" name="TEAM_ID" form="player"> 
-		<form action="<%=request.getContextPath() %>/player/add" method="POST" id="player"></form>
+		<form action="<%=request.getContextPath() %>/player/change" method="POST" id="player"></form>
 	<span>정보 수정 : </span>
 	<button type="submit" form="player">확인</button>
 	</div>
