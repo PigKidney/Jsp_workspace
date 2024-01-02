@@ -15,8 +15,8 @@
 		<li><a href="./quiz/list">다른 테이블 조회해보기</li>
 		<li><a href="./dbtest/bread/list">빵 테이블</li>
 		<li><a href="./dbtest/bread/add">다른 테이블에 데이터 삭제해보기 (INSERT)</a></li>
-		<li>다른 테이블의 데이터 수정해보기 (DELETE)</li>
-		<li>다른 테이블의 데이터 수정해보기 (UPDATE)</li>
+		<li><a href="./dbtest/bread/delete">다른 테이블의 데이터 수정해보기 (DELETE)</li>
+		<li><a href="./dbtest/bread/update">다른 테이블의 데이터 수정해보기 (UPDATE)</li>
 		
 	</ol>
 </body>

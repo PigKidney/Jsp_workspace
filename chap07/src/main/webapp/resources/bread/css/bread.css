@@ -1,0 +1,19 @@
+@charset "EUC-KR";
+
+#bread-list{
+	display: grid;
+	grid-template-columns : repeat(2,1fr);
+	gap: 3px;
+	width: 300px;
+}
+
+#bread-list > div{
+	border: solid 1px black;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.tag {
+	background-color: black;
+	color: white;
+}

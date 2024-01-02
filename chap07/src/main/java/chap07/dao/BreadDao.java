@@ -53,4 +53,42 @@ public class BreadDao {
 			}
 		
 	}
+	
+	public Integer delete(String Bread_name) {
+		// 나중에 테이블이 수정되는 것에 대비해 컬럼명을 다 쓰는 것이 바람직하다
+		String sql = "DELETE FROM bread WHERE bread_name = ? ";
+
+		try (
+				Connection conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+			){
+				pstmt.setString(1,Bread_name);				
+				return pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+		
+	}
+	
+	public Integer update(String Bread_name, Integer Bread_price) {
+		// 나중에 테이블이 수정되는 것에 대비해 컬럼명을 다 쓰는 것이 바람직하다
+		String sql = "UPDATE bread SET bread_price=? WHERE bread_name = ? ";
+
+		try (
+				Connection conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+			){
+			
+				pstmt.setInt(1, Bread_price);
+				pstmt.setString(2,Bread_name);				
+				return pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+		
+	}
 }

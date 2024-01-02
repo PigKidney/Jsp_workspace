@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import chap07.util.UriParser;
 import chap07.webprocess.BreadAddFormWebProcess;
 import chap07.webprocess.BreadAddWebProcess;
+import chap07.webprocess.BreadDeleteFormWebProcess;
+import chap07.webprocess.BreadDeleteWebProcess;
 import chap07.webprocess.BreadListWebProcess;
+import chap07.webprocess.BreadUpdateFormWebProcess;
+import chap07.webprocess.BreadUpdateWebProcess;
 import chap07.webprocess.DBtestWebProcess;
 import chap07.webprocess.IndexWebProcess;
 import chap07.webprocess.WebProcess;
@@ -28,7 +32,12 @@ public class ApplicationServlet extends HttpServlet{
 		uriMapping.put("GET::/dbtest/list",new DBtestWebProcess());
 		uriMapping.put("GET::/dbtest/bread/list",new BreadListWebProcess());
 		uriMapping.put("GET::/dbtest/bread/add",new BreadAddFormWebProcess());
+		uriMapping.put("GET::/dbtest/bread/delete",new BreadDeleteFormWebProcess());
+		uriMapping.put("GET::/dbtest/bread/update",new BreadUpdateFormWebProcess());
+
 		uriMapping.put("POST::/dbtest/bread/add",new BreadAddWebProcess());
+		uriMapping.put("POST::/dbtest/bread/delete",new BreadDeleteWebProcess());
+		uriMapping.put("POST::/dbtest/bread/update",new BreadUpdateWebProcess());
 
 
 	}
@@ -36,6 +45,8 @@ public class ApplicationServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getContextPath();
+		
+		req.setCharacterEncoding("EUC-KR");
 		System.out.println("method : " + req.getMethod());
 		String cmd = UriParser.getCmd(req);
 		
@@ -45,7 +56,14 @@ public class ApplicationServlet extends HttpServlet{
 		
 		String nextPage = uriMapping.get(cmd).process(req);
 		
-		req.getRequestDispatcher(nextPage).forward(req, resp);
+		resp.setContentType("text/html; charset=EUC-KR");
+		resp.setCharacterEncoding("EUC-KR");
+		if(nextPage.startsWith("redirect::")) {
+			resp.sendRedirect(nextPage.substring("redirect::".length()));
+		} else {
+			req.getRequestDispatcher(nextPage).forward(req, resp);			
+		}
+		
 		
 		
 		
