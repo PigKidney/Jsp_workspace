@@ -61,6 +61,14 @@ public class Student {
 		this.stu_math = stu_math;
 	}
 	
+	public Double getAvg() {
+		return (stu_kor+stu_eng+stu_math)/3.0;
+	}
 	
+	@Override
+	public String toString() {
+
+		return String.format("[%s %s %d %d %d %d]", stu_id, stu_name, stu_age, stu_kor, stu_eng, stu_math );
+	}
 	
 }

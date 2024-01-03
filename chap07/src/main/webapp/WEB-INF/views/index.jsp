@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import="java.util.List, chap07.dto.EmployeeDTO" %>
 <!DOCTYPE html>
 <html>
 <head>

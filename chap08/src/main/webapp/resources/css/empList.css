@@ -1,0 +1,19 @@
+@charset "EUC-KR";
+
+.emp-list{
+	display: grid;
+	grid-template-columns : repeat(11,1fr);
+	gap: 3px;
+}
+
+.emp-list > div {
+	border: solid 1px black;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.name {
+	background-color: black;
+	color: white;
+	font-weight: 700;
+}
