@@ -13,9 +13,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/JavaFullstack_YGM/database/sqldeveloper/jdbc/lib/ojdbc11.jar">
+	<classpathentry exported="true" kind="lib" path="/Applications/SQLDeveloper.app/Contents/Resources/sqldeveloper/jdbc/lib/ojdbc11.jar">
 		<attributes>
-			<attribute name="module" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
