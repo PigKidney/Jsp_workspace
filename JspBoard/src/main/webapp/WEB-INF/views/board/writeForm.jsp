@@ -12,7 +12,7 @@
 	
 	<form action="./write" method="post" id="writeForm">
 		글 제목 : <input type="text" name="board_title"/> <br>
-		글쓴이 : <input type="text" name="board_writer"/>
+		글쓴이 : <input type="text" name="board_writer"/> 
 		글 비밀번호 : <input type="password" name="board_password"/> <br>
 		<textarea name="board_content" rows="10" cols="30"></textarea>
 	</form>

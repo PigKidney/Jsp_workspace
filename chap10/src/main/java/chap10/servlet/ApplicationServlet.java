@@ -34,7 +34,7 @@ public class ApplicationServlet extends HttpServlet {
       String cmd =req.getMethod() + ":" + req.getRequestURI().substring(req.getContextPath().length());
       String nextView = uriMapping.get(cmd).service(req);
    
-      if(nextView.startsWith("REDIRECT_PREFIX")) {
+      if(nextView.startsWith(REDIRECT_PREFIX)) {
          resp.sendRedirect(nextView.substring(REDIRECT_PREFIX_LEN));
       } else {
          req.getRequestDispatcher(nextView).forward(req, resp);
