@@ -1,4 +1,4 @@
-package chap10.service;
+package board.service;
 
 import javax.servlet.http.HttpServletRequest;
 

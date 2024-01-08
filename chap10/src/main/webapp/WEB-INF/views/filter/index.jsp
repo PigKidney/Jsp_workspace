@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>FilterIndex</title>
 </head>
 <body>
 
-<h1>Filter.jsp</h1>
+ <h1>Filter.jsp</h1>	
 
 </body>
 </html>

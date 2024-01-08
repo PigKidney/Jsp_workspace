@@ -8,16 +8,16 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-public class MyFilter implements Filter {
-
+public class MyFilter implements Filter{
+	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("Myfilter 스윽");
-
-		// 다음 필터를 찾아가는 메서드를 반드시 직접 호출해야 한다
+		System.out.println("Myfilter 지나감.");
+		
+		//다음 필터를 찾아가는 메서드를 반드시 직접 호출해줘야한다
 		chain.doFilter(request, response);
-
+		
 	}
 
 }

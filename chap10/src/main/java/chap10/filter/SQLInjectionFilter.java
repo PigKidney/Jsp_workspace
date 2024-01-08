@@ -8,21 +8,21 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-public class SQLInjectionFilter implements Filter {
-
+public class SQLInjectionFilter implements Filter{
+	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-
 		String name = request.getParameter("userName");
-		// 위험한 SQL 문자열이 있는지 검사
-		// if(name.contains())
-
-		// 글 내용중에 자바스크립트 소스가 포함되어있는지 검사한다
-		System.out.println("검사중");
+		
+		//위험한 SQL문자열이 있는지를 검사한다
+		//if (name.contains())
+		
+		// 글 내용중에 자바스크립트 소스가 포함되어 있는지 검사한다... (XSS 공격 대비)
+		System.out.println("포함된 데이터들을 검사하는 중입니다...");
 		
 		chain.doFilter(request, response);
-
+		
 	}
 
 }
