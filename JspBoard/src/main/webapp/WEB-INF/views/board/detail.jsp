@@ -9,6 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
+	<!-- 원글 -->
+	
 	<h3>조회 잘됨</h3>
 	글 제목 : <input type="text" value="${detail.board_title}" readonly="readonly" name="board_title" form="deleteForm"/> <br> 
 	글쓴사람 : <input type="text" value="${detail.board_writer}" readonly="readonly"/> <br> 
@@ -20,6 +23,20 @@
 		<button id="delBtn">삭제하기</button>
 		<button id="delBtn2">삭제하기(팝업)</button>
 		
+	<br><br>	
+	<!-- 댓글 -->
+	
+	<div>
+		<textarea id="replyContent" name="reply_content" id="" rows="5" cols="80" form="replyForm"></textarea><br>
+		댓글쓴이 <input id="reply_writer" type="text" name="reply_writer" form="replyForm"/>
+		비밀번호 <input id="reply_password" type="password" name="reply_password" form="replyForm"/>
+		<button id="replyWriteBtn" form="replyForm">댓글 쓰기</button>
+	</div>
+	<form id="replyForm" action="./reply/add" method="post">
+		<input type="hidden" name="board_id" value="${detail.board_id}">
+	</form>
+	
+		
 	
 	<input type="hidden" name="board_password" value="${detail.board_password}" id="hiddenPassword" form="deleteForm"/>
 	<input type="hidden" name="board_id" value="${detail.board_id}" form="deleteForm"/>
@@ -28,7 +45,8 @@
 	<form id="deleteForm" action="./delete" method="post"></form>
 	
 	<c:url value="/resources/board/js/detail.js" var="detailJS"></c:url>
-		<c:url value="/resources/board/js/sha256.js" var="sha256"></c:url>
+	<c:url value="/resources/board/js/sha256.js" var="sha256"></c:url>
+	<c:url value="/resources/board/js/detailReply.js" var="detailReplyJS"></c:url>
 	
 	<script>
 		//'' -> 문자열 숫자 차이 
@@ -37,5 +55,7 @@
 	</script>
 	<script src="${sha256}"></script>
 	<script src="${detailJS}"></script>
+	<script src="${detailReplyJS}"></script>
+	
 </body>
 </html>
