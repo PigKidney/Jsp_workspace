@@ -38,12 +38,12 @@ public class BoardDAO {
 	}
 
 	public List<BoardDTO> getList() {
-		String sql = "SELECT board_id,board_title,board_writer,view_count,write_date FROM myboard ORDER BY board_id DESC";
+		String sql = "SELECT board_id,board_title,board_writer,view_count,write_date,board_content FROM myboard ORDER BY board_id DESC";
 
 		List<BoardDTO> list = new ArrayList<>();
 		try (Connection conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery();) {
+				ResultSet rs = pstmt.executeQuery();) {			
 			while (rs.next()) {
 				BoardDTO dto = new BoardDTO();
 
@@ -52,7 +52,10 @@ public class BoardDAO {
 				dto.setBoard_writer(rs.getString("board_writer"));
 				dto.setView_count(rs.getInt("view_count"));
 				dto.setWrite_date(rs.getDate("write_date"));
-				list.add(dto);
+				dto.setBoard_content(rs.getString("board_content"));
+				if(!dto.getBoard_content().startsWith("delete::")) {
+					list.add(dto);
+				}
 			}
 			return list;
 		} catch (SQLException e) {
@@ -101,5 +104,40 @@ public class BoardDAO {
 			e.printStackTrace();
 			return -1;
 		}
+	}
+	
+	public int modify(BoardDTO dto) {
+		String sql = "UPDATE myboard SET board_title=?,board_content=? WHERE board_id=?";
+
+		try (
+			Connection conn = DBConnector.getConnection(); 
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+		) {
+			pstmt.setString(1, dto.getBoard_title());
+			pstmt.setString(2, dto.getBoard_content());
+			pstmt.setInt(3, dto.getBoard_id());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public int delete(BoardDTO dto) {
+		String sql = "UPDATE myboard SET board_content=? WHERE board_id=?";
+
+		try (
+			Connection conn = DBConnector.getConnection(); 
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+		) {
+			pstmt.setString(1, dto.getBoard_content());
+			pstmt.setInt(2, dto.getBoard_id());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
 	}
 }
