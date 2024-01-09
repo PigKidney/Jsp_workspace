@@ -140,4 +140,20 @@ public class BoardDAO {
 		}
 		return -1;
 	}
+	
+	public int shifttDelete(int pk) {
+		String sql = "DELETE FROM myboard WHERE board_id=?";
+
+		try (
+			Connection conn = DBConnector.getConnection(); 
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+		) {
+			pstmt.setInt(1, pk);
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
+	}
 }

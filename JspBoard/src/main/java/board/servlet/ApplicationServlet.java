@@ -16,6 +16,7 @@ import board.service.BoardModifyFormService;
 import board.service.BoardModifyService;
 import board.service.BoardWriteFormService;
 import board.service.BoardWriteService;
+import board.service.DeletePopupService;
 import board.service.Service;
 
 public class ApplicationServlet extends HttpServlet {
@@ -30,6 +31,7 @@ public class ApplicationServlet extends HttpServlet {
 		uriMapping.put("GET:/write", BoardWriteFormService.getInstance());
 		uriMapping.put("GET:/detail", BoardDetailService.getInstance());
 		uriMapping.put("GET:/modify", BoardModifyFormService.getInstance());
+		uriMapping.put("GET:/delete/open", DeletePopupService.getInstance());
 
 		
 		uriMapping.put("POST:/write", BoardWriteService.getInstance());

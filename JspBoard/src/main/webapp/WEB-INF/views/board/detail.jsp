@@ -15,12 +15,16 @@
 	조회수 : ${detail.view_count} 작성일 : ${detail.write_date} <br> 
 	<textarea rows="10" cols="30" readonly="readonly" name="board_content" form="deleteForm">${detail.board_content}</textarea> <br> 
 	
-		<input id="inputPassword" name="board_password">
+		<input id="inputPassword" name="board_password"/>
 		<button id="modiBtn">수정하기</button>
 		<button id="delBtn">삭제하기</button>
-	<!-- <form id="modiForm" action="./modify" method="post"></form>
-	<form id="delForm" action="./delete" method="post"></form> -->
-	<input type="hidden" name="board_id" value="${detail.board_id}" form="deleteForm">
+		<button id="delBtn2">삭제하기(팝업)</button>
+		
+	
+	<input type="hidden" name="board_password" value="${detail.board_password}" id="hiddenPassword" form="deleteForm"/>
+	<input type="hidden" name="board_id" value="${detail.board_id}" form="deleteForm"/>
+	<input type="hidden" name="check_password" value="${detail.board_password}" form="deleteForm"/>
+	
 	<form id="deleteForm" action="./delete" method="post"></form>
 	
 	<c:url value="/resources/board/js/detail.js" var="detailJS"></c:url>
