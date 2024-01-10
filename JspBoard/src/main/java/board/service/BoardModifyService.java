@@ -33,7 +33,7 @@ public class BoardModifyService implements Service{
 				return "redirect::/";
 			}
 			
-			int board_id = Integer.parseInt(request.getParameter("board_id"));
+			int board_id = Integer.parseInt(board_id_str);
 			
 			BoardDTO dto = new BoardDTO();
 			

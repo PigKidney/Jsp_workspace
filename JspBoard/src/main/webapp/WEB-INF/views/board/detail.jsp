@@ -11,7 +11,7 @@
 <body>
 	
 	<!-- 원글 -->
-	
+	<button id="backBtn">뒤로가기</button>
 	<h3>조회 잘됨</h3>
 	글 제목 : <input type="text" value="${detail.board_title}" readonly="readonly" name="board_title" form="deleteForm"/> <br> 
 	글쓴사람 : <input type="text" value="${detail.board_writer}" readonly="readonly"/> <br> 
@@ -41,6 +41,16 @@
 	<input type="hidden" name="board_password" value="${detail.board_password}" id="hiddenPassword" form="deleteForm"/>
 	<input type="hidden" name="board_id" value="${detail.board_id}" form="deleteForm"/>
 	<input type="hidden" name="check_password" value="${detail.board_password}" form="deleteForm"/>
+	
+	<hr>
+	
+	<c:forEach items="${replies}" var="reply">
+		<div>
+			[${reply.reply_writer}]
+			${reply.reply_content}
+			<span>${reply.reply_date}</span>
+		</div>
+	</c:forEach>
 	
 	<form id="deleteForm" action="./delete" method="post"></form>
 	

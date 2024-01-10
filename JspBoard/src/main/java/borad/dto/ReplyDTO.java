@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ReplyDTO {
 	private Integer reply_id; // 댓글 번호 PK
-	private Integer borard_id; //글 번호 FK
+	private Integer board_id; //글 번호 FK
 	private String reply_writer;
 	private String reply_content;
 	private String reply_password;
@@ -20,7 +20,7 @@ public class ReplyDTO {
 			String reply_password, Integer reply_good_count, Integer reply_bad_count, Date reply_date) {
 		super();
 		this.reply_id = reply_id;
-		this.borard_id = borard_id;
+		this.board_id = borard_id;
 		this.reply_writer = reply_writer;
 		this.reply_content = reply_content;
 		this.reply_password = reply_password;
@@ -38,11 +38,11 @@ public class ReplyDTO {
 	}
 
 	public Integer getBorard_id() {
-		return borard_id;
+		return board_id;
 	}
 
 	public void setBorard_id(Integer borard_id) {
-		this.borard_id = borard_id;
+		this.board_id = borard_id;
 	}
 
 	public String getReply_writer() {

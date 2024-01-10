@@ -5,7 +5,7 @@ const delBtn = document.querySelector('#delBtn');
 const delBtn2 = document.querySelector('#delBtn2');
 
 const hiddenPassword = document.querySelector('#hiddenPassword');
-
+const backBtn = document.querySelector('#backBtn');
 
 const getHashPassword = password => sha256(password).toUpperCase();
 
@@ -39,4 +39,9 @@ delBtn2.addEventListener('click', (e) => {
 	const popup = open('./delete/open', '_blank', 'width=500,height=500');
 	
 	
+});
+
+
+backBtn.addEventListener('click', (e) => {
+	location.href = './';
 });

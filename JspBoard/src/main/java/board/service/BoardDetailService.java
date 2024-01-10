@@ -1,11 +1,15 @@
 package board.service;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.dao.BoardDAO;
+import board.dao.ReplyDAO;
 import borad.dto.BoardDTO;
+import borad.dto.ReplyDTO;
 
 public class BoardDetailService implements Service{
 	private static BoardDetailService instance = new BoardDetailService();
@@ -15,7 +19,6 @@ public class BoardDetailService implements Service{
 	}
 	
 	private BoardDetailService() {}
-	
 	@Override
 	public String service(HttpServletRequest request, HttpServletResponse response) {
 		// 예외처리를 해줘야하지만 (생략)
@@ -51,9 +54,11 @@ public class BoardDetailService implements Service{
 		}
 		
 		BoardDTO detail = BoardDAO.getInstacne().get(board_id);
+		List<ReplyDTO> replies = ReplyDAO.getDao().getBoardReplies(board_id);
 		
 		if(detail != null) {
 			request.setAttribute("detail", detail);
+			request.setAttribute("replies", replies);
 			return "/WEB-INF/views/board/detail.jsp";			
 		} else {
 			return "/WEB-INF/views/board/detailNotFound.jsp";
